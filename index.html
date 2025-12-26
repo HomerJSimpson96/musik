@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="utf-8">
-  <title>Song wird geladen…</title>
-  <meta name="robots" content="noindex">
-  <script>
-    const tracks = {
-      "1":  "6rPO02ozF3bM7NnOV4h6s2",
-      "2":  "3n3Ppam7vgaVa1iaRUc9Lp"
-      // weitere Songs hier ergänzen
-    };
+<script>
+  const tracks = {
+    "1":  "6rPO02ozF3bM7NnOV4h6s2",
+    "2":  "3n3Ppam7vgaVa1iaRUc9Lp"
+    // weitere Songs hier ergänzen
+  };
 
-    const parts = window.location.pathname.split("/");
-    const number = parts[parts.length - 1] || parts[parts.length - 2];
+  const params = new URLSearchParams(window.location.search);
+  const n = params.get("n");
 
-    if (tracks[number]) {
-      window.location.replace(
-        "https://open.spotify.com/track/" + tracks[number]
-      );
-    } else {
-      document.body.innerHTML =
-        "<h1>Song nicht gefunden</h1><p>Diese Karte ist (noch) nicht registriert.</p>";
-    }
-  </script>
-</head>
-<body>
-  <p>Song wird geladen…</p>
-</body>
-</html>
+  if (n && tracks[n]) {
+    window.location.replace("https://open.spotify.com/track/" + tracks[n]);
+  } else {
+    document.body.innerHTML =
+      "<h1>Song nicht gefunden</h1>" +
+      "<p>Bitte prüfe den Link (z. B. <code>?n=17</code>).</p>";
+  }
+</script>
