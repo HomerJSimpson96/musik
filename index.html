@@ -1,18 +1,23 @@
 <script>
   const tracks = {
-    "1":  "6rPO02ozF3bM7NnOV4h6s2",
-    "2":  "3n3Ppam7vgaVa1iaRUc9Lp"
-    // weitere Songs hier ergänzen
+    "1": "6rPO02ozF3bM7NnOV4h6s2",
+    "2": "3n3Ppam7vgaVa1iaRUc9Lp"
   };
 
   const params = new URLSearchParams(window.location.search);
   const n = params.get("n");
+  const id = n ? tracks[n] : null;
 
-  if (n && tracks[n]) {
-    window.location.replace("https://open.spotify.com/track/" + tracks[n]);
-  } else {
+  if (!id) {
     document.body.innerHTML =
-      "<h1>Song nicht gefunden</h1>" +
-      "<p>Bitte prüfe den Link (z. B. <code>?n=17</code>).</p>";
+      "<h1>Song nicht gefunden</h1><p>Bitte Link prüfen (z. B. ?n=17).</p>";
+  } else {
+    // 1) Versuch: Spotify-App öffnen
+    window.location.replace("spotify:track:" + id);
+
+    // 2) Fallback nach kurzer Zeit: Web-Link
+    setTimeout(() => {
+      window.location.replace("https://open.spotify.com/track/" + id);
+    }, 800);
   }
 </script>
