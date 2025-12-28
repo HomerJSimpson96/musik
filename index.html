@@ -12,7 +12,7 @@
   };
 
   const params = new URLSearchParams(window.location.search);
-  const n = params.get("n");
+  const nRaw = params.get("n");
   const n = nRaw ? nRaw.trim().replace(/^0+/, "") : null; // führende Nullen entfernen
   const id = n ? tracks[n] : null;
 
