@@ -142,10 +142,15 @@
     // 1) Versuch: Spotify-App öffnen
     window.location.replace("spotify:track:" + id);
 
-    // 2) Fallback nach kurzer Zeit: Web-Link
+    // 2) Versuch: Browser-Tab schließen
+    setTimeout(() => {
+      window.close();
+    }, 1200);
+    
+    // 3) Fallback nach kurzer Zeit (falls App-Link nicht funktioniert): Web-Link
     setTimeout(() => {
       window.location.replace("https://open.spotify.com/track/" + id);
-    }, 800);
+    }, 1800);
   }
 </script>
   
