@@ -1,0 +1,5 @@
+window.TRACKS = {
+  "1": "5n5uyFpfopa4mNdSN0gTaH",
+  "2": "3SOp10shYtVHuZWxVGenUb",
+  "3": "5JlqbEj7Bbh2RdZgcO5kJE"
+};
